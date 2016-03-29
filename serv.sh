@@ -6,12 +6,12 @@ echo "Install and run nginx and component"
 apt-get install -y nginx 
 apt-get install -y python-dev python-virtualenv
 apt-get install -y uwsgi uwsgi-plugin-python 
-apt-get install -y python-pip 
+apt-get install -y python-pip > /dev/null 
 
 #install Flask
-
-pip install Flask
-pip install uwsgi
+echo "Install Flask"
+pip install Flask > /dev/null
+pip install uwsgi > /dev/null
 
 
 #Nginx setup
@@ -20,6 +20,8 @@ cp /vagrant/app-serv /etc/nginx/sites-available/
 ln -s /etc/nginx/sites-available/app-serv /etc/nginx/sites-enabled
 
 service nginx restart
+
+mkdir /var/www
 mkdir /var/www/hello
 cp /vagrant/py_app.py /var/www/hello
 cp /vagrant/welcom.jpg /var/www/hello
